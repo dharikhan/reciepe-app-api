@@ -1,14 +1,15 @@
-FROM python:3.10-alpine
+FROM python:3.9-alpine
 MAINTAINER dharitech ltd
 
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirement.txt/requirement.txt
-RUN pip install -r /requirement.txt
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 
-RUN makrdir /app
-WORKDIR /appCOPY ./app /app
+RUN mkdir /app
+WORKDIR /app
+COPY ./app /app
 
 RUN adduser -D user
 USER user
